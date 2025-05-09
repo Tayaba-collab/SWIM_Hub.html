@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Profile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #87CEFA, #1E90FF);
+      overflow-x: hidden;
+    }
+
+    #ocean {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('ocean.background.jpeg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .fishu, .crabsy, .jelly, .octo {
+      position: absolute;
+      width: 100px;
+      animation: float 6s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .fishu { top: 20%; left: 10%; }
+    .crabsy { bottom: 5%; left: 20%; }
+    .jelly { top: 10%; right: 15%; }
+    .octo { bottom: 10%; right: 5%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-60px); }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .container {
+      margin: 140px auto 60px;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      z-index: 2;
+      position: relative;
+    }
+
+    #profileData ul {
+      padding-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ocean"></div>
+
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="teacher.html">Teacher Portal</a>
+      <a href="quiz.html">Student Quizzes</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <div class="logo">
+      <img src="Logo.png" alt="SWIM Hub Logo" />
+    </div>
+  </header>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/20/audio_44ecf9c38a.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <section class="container">
+    <h2>Student Profile</h2>
+    <p>Track your stars, badges, and learning history powered by AI insights.</p>
+    <div id="profileData">Loading your data...</div>
+  </section>
+
+  <img src="fishu.png" alt="Fishu" class="fishu">
+  <img src="crabsy.png" alt="Crabsy" class="crabsy">
+  <img src="jelly.png" alt="Jelly" class="jelly">
+  <img src="octo.png" alt="Octo" class="octo">
+
+  <script>
+    window.onload = async () => {
+      const profileEl = document.getElementById("profileData");
+      try {
+        const res = await fetch("http://localhost:8000/api/student-profile");
+        const data = await res.json();
+
+        profileEl.innerHTML = `
+          <p><strong>Total Stars:</strong> ${data.stars}</p>
+          <p><strong>Badges:</strong> ${data.badges.join(", ")}</p>
+          <h4>Quiz History:</h4>
+          <ul>${data.history.map(q => `<li>${q}</li>`).join("")}</ul>
+        `;
+      } catch (err) {
+        profileEl.innerHTML = `<p style='color:red;'>Error: ${err.message}</p>`;
+      }
+    };
+  </script>
+
+</body>
+</html>
