@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SWIM Hub - Home</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #87CEFA, #1E90FF);
+      overflow-x: hidden;
+    }
+
+    #ocean {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url('ocean.background.jpeg') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .fishu, .crabsy, .jelly, .octo {
+      position: absolute;
+      width: 100px;
+      animation: float 6s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .fishu { top: 20%; left: 10%; }
+    .crabsy { bottom: 5%; left: 20%; }
+    .jelly { top: 10%; right: 15%; }
+    .octo { bottom: 10%; right: 5%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-60px); }
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .content {
+      padding: 120px 20px 80px;
+      text-align: center;
+      color: white;
+      z-index: 2;
+      position: relative;
+    }
+
+    .content h1 {
+      font-size: 48px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .content h2 {
+      font-size: 40px;
+      margin-top: 10px;
+    }
+
+    .tagline {
+      margin-top: 20px;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    .button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .button:hover {
+      background-color: #FF8C00;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ocean"></div>
+
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="teacher.html">Teacher Portal</a>
+      <a href="quiz.html">Student Quizzes</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <div class="logo">
+      <img src="swimhub-logo.png" alt="SWIM Hub Logo" />
+    </div>
+  </header>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/20/audio_44ecf9c38a.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="content">
+    <h1>WELCOME TO</h1>
+    <h2>SWIM HUB</h2>
+    <div class="tagline">SWIM Smart. Learn Deep.</div>
+    <button class="button">Get Started</button>
+  </div>
+
+  <img src="fishu.png" alt="Fishu" class="fishu">
+  <img src="crabsy.png" alt="Crabsy" class="crabsy">
+  <img src="jelly.png" alt="Jelly" class="jelly">
+  <img src="octopus.png" alt="Octo" class="octo">
+
+  <script>
+    document.querySelector('.button').addEventListener('click', () => {
+      alert('Welcome to SWIM Hub! Let\'s begin learning!');
+    });
+  </script>
+
+</body>
+</html>
+
